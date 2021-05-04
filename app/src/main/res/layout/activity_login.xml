@@ -70,8 +70,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
         android:id="@+id/btn_menugetin"
+        style="@style/TextAppearance.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -79,10 +79,11 @@
         android:layout_marginTop="650dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:onClick="login"
+        android:text="@string/str_logingetin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_logingetin">
+        app:layout_constraintTop_toTopOf="parent">
 
     </com.google.android.material.button.MaterialButton>
 </androidx.constraintlayout.widget.ConstraintLayout>
