@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.wpossbank">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.WpossBank">
+        <activity android:name=".views.correspondentbalance"></activity>
+        <activity android:name=".views.transactionhistory" />
+        <activity android:name=".views.createaccount" />
+        <activity android:name=".views.checkbalance" />
+        <activity android:name=".views.transfer" />
+        <activity android:name=".views.deposit" />
+        <activity android:name=".views.withdrawal" />
+        <activity android:name=".views.cardpayment" />
+        <activity android:name=".views.login" />
+        <activity android:name=".views.menu" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
