@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Wposs Bank</string>
+    <string name="str_loginemail">Ingrese su email</string>
+    <string name="str_loginpassword">Ingrese su password</string>
+    <string name="str_logingetin">Ingresar</string>
+
 </resources>
