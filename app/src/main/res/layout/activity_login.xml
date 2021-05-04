@@ -71,7 +71,7 @@
 
     <com.google.android.material.button.MaterialButton
         style="@style/TextAppearance.MaterialComponents.Button"
-        android:id="@+id/btn_logingetin"
+        android:id="@+id/btn_menugetin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

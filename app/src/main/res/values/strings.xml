@@ -3,5 +3,14 @@
     <string name="str_loginemail">Ingrese su email</string>
     <string name="str_loginpassword">Ingrese su password</string>
     <string name="str_logingetin">Ingresar</string>
+    <string name="str_menucardpayment">Pagos con tarjeta</string>
+    <string name="str_menuwithdrawal">Retiros</string>
+    <string name="str_menudeposit">Depósitos</string>
+    <string name="str_menutransfer">Transferencias</string>
+    <string name="str_menucheckbalance">Consultas de saldo</string>
+    <string name="str_menucreateaccount">Crear cuenta</string>
+    <string name="str_menutransactionhistory">Historial de transacciones</string>
+    <string name="str_menucorrespondentbalance">Visualizar saldo del corresponsal</string>
+    <string name="str_menuexit">Salir</string>
 
 </resources>
