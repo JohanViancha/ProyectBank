@@ -1,4 +1,4 @@
 package com.example.wpossbank.models;
 
-public class Cliente {
+public class Client {
 }

@@ -20,19 +20,19 @@ public class admindb extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         //Se crea la tabla de corresponsal
-        db.execSQL("CREATE TABLE corresponsal (" +
-                "id_corresponsal integer primary key," +
+        db.execSQL("CREATE TABLE correspondent (" +
+                "id_correspondent integer primary key," +
                 "email_cor text," +
                 "password_cor text," +
-                "saldo money"+
+                "balance_cor money"+
                 ")");
 
 
         //Se crea el correponsal inicial
-        db.execSQL("INSERT INTO corresponsal VALUES (1,'johan@wposs.com','123456',100000)");
+        db.execSQL("INSERT INTO correspondent VALUES (1,'johan@wposs.com','123456',100000)");
 
         //Se crea la tabla cliente
-        db.execSQL("CREATE TABLE cliente(" +
+        db.execSQL("CREATE TABLE clients (" +
                 "id_cliente integer primary key," +
                 "nombre_cli text,"+
                 "cedula_cli text," +
@@ -40,12 +40,12 @@ public class admindb extends SQLiteOpenHelper {
                 "saldo_cli money)");
 
         //Se crea la tabla transaccion
-        db.execSQL("CREATE TABLE transaccion(" +
+        db.execSQL("CREATE TABLE transactions (" +
                 "id_transacion integer primary key," +
-                "tipo_tra text," +
-                "monto_tra money," +
-                "fecha_tra date," +
-                "cedula_tra)");
+                "type_tra text," +
+                "amount_tra money," +
+                "date_tra date," +
+                "identification_tra)");
     }
 
     @Override

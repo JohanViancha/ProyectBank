@@ -1,4 +1,4 @@
 package com.example.wpossbank.managedb;
 
-public class admincliente {
+public class adminclient {
 }

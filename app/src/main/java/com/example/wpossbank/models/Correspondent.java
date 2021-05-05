@@ -1,22 +1,22 @@
 package com.example.wpossbank.models;
 
-public class Corresponsal {
+public class Correspondent {
 
     private int id;
     private String email;
     private String password;
-    private double saldo;
+    private double balance;
 
-    public Corresponsal(String email, String password) {
+    public Correspondent(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public Corresponsal(int id, String email, String password, double saldo) {
+    public Correspondent(int id, String email, String password, double balance) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.saldo = saldo;
+        this.balance = balance;
     }
 
     public int getId() {
@@ -43,11 +43,11 @@ public class Corresponsal {
         this.password = password;
     }
 
-    public double getSaldo() {
-        return saldo;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
+    public void setBalance(double saldo) {
+        this.balance = saldo;
     }
 }
