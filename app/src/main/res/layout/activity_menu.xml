@@ -5,165 +5,169 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.menu">
+
     <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
         android:id="@+id/btn_menucardpayment"
+        style="@style/TextAppearance.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:onClick="cardpayment"
+        android:text="@string/str_menucardpayment"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_menucardpayment">
+        app:layout_constraintTop_toTopOf="parent">
 
     </com.google.android.material.button.MaterialButton>
 
     <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
-        android:id="@+id/btn_menuwithdrawal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_menuwithdrawal">
-
-    </com.google.android.material.button.MaterialButton>
-
-
-    <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
         android:id="@+id/btn_menudeposit"
+        style="@style/TextAppearance.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="190dp"
+        android:layout_marginTop="236dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:text="@string/str_menudeposit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_menudeposit">
+        app:layout_constraintTop_toTopOf="parent">
 
     </com.google.android.material.button.MaterialButton>
 
-
     <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
         android:id="@+id/btn_menutransfer"
+        style="@style/TextAppearance.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="304dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:text="@string/str_menutransfer"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_menutransfer">
+        app:layout_constraintTop_toTopOf="parent">
 
     </com.google.android.material.button.MaterialButton>
 
-
     <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
         android:id="@+id/btn_menucheckbalance"
+        style="@style/TextAppearance.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="376dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:text="@string/str_menucheckbalance"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_menucheckbalance">
+        app:layout_constraintTop_toTopOf="parent">
 
     </com.google.android.material.button.MaterialButton>
 
     <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
-        android:id="@+id/btn_menucreateaccount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_menucreateaccount">
-
-    </com.google.android.material.button.MaterialButton>
-
-    <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
-        android:id="@+id/btn_menutransactionhistory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="470dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_menutransactionhistory">
-
-    </com.google.android.material.button.MaterialButton>
-
-    <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
-        android:id="@+id/btn_menucorrespondentbalance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="540dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_menucorrespondentbalance">
-
-    </com.google.android.material.button.MaterialButton>
-
-
-
-    <com.google.android.material.button.MaterialButton
-        style="@style/TextAppearance.MaterialComponents.Button"
         android:id="@+id/btn_menuexit"
+        style="@style/TextAppearance.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="610dp"
+        android:layout_marginTop="656dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:text="@string/str_menuexit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/str_menuexit">
+        app:layout_constraintTop_toTopOf="parent">
 
     </com.google.android.material.button.MaterialButton>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_menuwithdrawal"
+        style="@style/TextAppearance.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/str_menuwithdrawal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_menutransactionhistory"
+        style="@style/TextAppearance.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="516dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/str_menutransactionhistory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_menucreateaccount"
+        style="@style/TextAppearance.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="444dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/str_menucreateaccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_menucorrespondentbalance"
+        style="@style/TextAppearance.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="584dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/str_menucorrespondentbalance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.button.MaterialButton>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

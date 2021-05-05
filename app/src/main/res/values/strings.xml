@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">Wposs Bank</string>
+
+    <!-- String para el login -->
     <string name="str_loginemail">Ingrese su email</string>
     <string name="str_loginpassword">Ingrese su password</string>
     <string name="str_logingetin">Ingresar</string>
+
+    <!-- String para el menu -->
     <string name="str_menucardpayment">Pagos con tarjeta</string>
     <string name="str_menuwithdrawal">Retiros</string>
     <string name="str_menudeposit">Depósitos</string>
@@ -12,5 +16,20 @@
     <string name="str_menutransactionhistory">Historial de transacciones</string>
     <string name="str_menucorrespondentbalance">Visualizar saldo del corresponsal</string>
     <string name="str_menuexit">Salir</string>
+
+    <!-- String para el pago con tarjeta -->
+    <string name="str_cardpaymentcard">Numero de Tajera</string>
+    <string name="str_cardpaymentdate">Fecha de vencimiento</string>
+    <string name="str_cardpaymentcvv">CVV</string>
+    <string name="str_cardpaymentname">Nombre del Titular</string>
+    <string name="str_cardpaymentvalue">Valor a pagar</string>
+    <string name="str_cardpaymentfees">Cuotas</string>
+    <string name="str_cardpaymentpay">Pagar</string>
+
+
+
+
+
+
 
 </resources>

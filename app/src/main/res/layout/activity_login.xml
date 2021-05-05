@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".views.login">
 
+
     <View
         android:layout_width="400dp"
         android:layout_height="327dp"

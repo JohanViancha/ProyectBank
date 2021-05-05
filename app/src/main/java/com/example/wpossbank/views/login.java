@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.wpossbank.R;
 import com.example.wpossbank.managedb.admincorresponsal;
@@ -19,10 +20,12 @@ import com.google.android.material.textfield.TextInputEditText;
 public class login extends AppCompatActivity {
 
     TextInputEditText email, password;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         email = findViewById(R.id.txt_loginemail);
         password = findViewById(R.id.txt_loginpassword);
