@@ -97,6 +97,7 @@
         android:layout_marginTop="600dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:onClick="updatePassword"
         android:text="@string/str_correspondentbalancebtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -30,6 +30,13 @@ public class correspondentbalance extends AppCompatActivity {
         password = findViewById(R.id.txt_correspondentbalancepassword);
         passwordrepeat = findViewById(R.id.txt_correspondentbalancepasswordrepat);
         balance = findViewById(R.id.tv_correspondentbalancevalue);
+        admincorrespondent admincorr = new admincorrespondent();
+
+
+        SharedPreferences sharedpreferences = getSharedPreferences("sesion_corresponsal", Context.MODE_PRIVATE);
+        int id = sharedpreferences.getInt("id_correspondent", 0);
+        balance.setText(String.valueOf(admincorr.getBalanceCorrespondent(this,id)));
+
     }
 
 
@@ -51,7 +58,6 @@ public class correspondentbalance extends AppCompatActivity {
 
                 if(admincorr.updatePasswordCorrespondent(this,id,password)){
                     mes.getMessage(this,"¡Exitoso!","Las contraseña ha sido actualizada");
-
                 }
 
             }else{

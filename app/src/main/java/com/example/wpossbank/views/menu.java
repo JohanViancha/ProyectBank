@@ -49,6 +49,11 @@ public class menu extends AppCompatActivity {
         startActivity(inte);
     }
 
+    public void correspondentbalance(View view){
+        Intent inte = new Intent(this, correspondentbalance.class);
+        startActivity(inte);
+    }
+
 
     public void exit(View view){
         Intent inte = new Intent(this, login.class);
