@@ -70,7 +70,11 @@ public class cardpayment extends AppCompatActivity implements View.OnFocusChange
 
             //Se usa el metodo validateDate verificar que los datos tengas las condiciones necesarias
             if(validateData(card,newdate,now,cvv,value)){
-                Transaction transaction = new Transaction(type,value,now,card);
+                long ahora = System.currentTimeMillis();
+                Date fecha = new Date(ahora);
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String actual = df.format(fecha);
+                Transaction transaction = new Transaction(type,value,actual,card);
                 admintransaction admin = new admintransaction();
                 SharedPreferences sharedpreferences = getSharedPreferences("sesion_corresponsal", Context.MODE_PRIVATE);
                 int id = sharedpreferences.getInt("id_correspondent", 0);

@@ -6,10 +6,12 @@ public class Transaction {
 
     private String type;
     private double amount;
-    private Date date;
-    private String identification ;
+    private String date;
+    private String identification;
 
-    public Transaction(String type, double amount, Date date, String identification) {
+
+
+    public Transaction(String type, double amount, String date, String identification) {
         this.type = type;
         this.amount = amount;
         this.date = date;
@@ -32,11 +34,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

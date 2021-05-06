@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <LinearLayout
+
+        android:layout_width="390dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="37dp">
+
+        <RelativeLayout
+            android:id="@+id/list_usuarios"
+            android:layout_width="362dp"
+            android:layout_height="138dp">
+
+            <TextView
+                android:id="@+id/tv_transactionhistorydate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:textSize="18sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_transactionhistorytype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:textSize="18dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_transactionhistoryidentification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:textSize="18dp"></TextView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

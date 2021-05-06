@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".views.transactionhistory">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_transactionhistory"
+        android:layout_width="373dp"
+        android:layout_height="578dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="137dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

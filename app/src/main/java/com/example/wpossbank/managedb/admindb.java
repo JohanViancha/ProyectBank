@@ -44,7 +44,7 @@ public class admindb extends SQLiteOpenHelper {
                 "id_transacion integer primary key," +
                 "type_tra text," +
                 "amount_tra money," +
-                "date_tra date," +
+                "date_tra text," +
                 "identification_tra)");
     }
 

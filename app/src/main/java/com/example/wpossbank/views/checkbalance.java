@@ -51,16 +51,10 @@ public class checkbalance extends AppCompatActivity {
             Client client = new Client(identification, pin);
             if(validateData(client,pinrepeat,commission)){
 
-                Date dateObj = new Date();
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                SimpleDateFormat formatdate = new SimpleDateFormat("dd/MM/yyyy");
-                Date now = null;
-                try {
-                    now = formatdate.parse(String.valueOf(dateFormat.format(dateObj)));
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                long ahora = System.currentTimeMillis();
+                Date fecha = new Date(ahora);
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String now = df.format(fecha);
 
                 //Se obtiene el id del corresponsal
                 SharedPreferences sharedpreferences = getSharedPreferences("sesion_corresponsal", Context.MODE_PRIVATE);

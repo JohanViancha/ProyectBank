@@ -51,16 +51,10 @@ public class deposit extends AppCompatActivity {
             //Se valida que las dos celulas ingresadas existen en base de datos
             if(validateData(client1,client2)){
 
-                Date dateObj = new Date();
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                SimpleDateFormat formatdate = new SimpleDateFormat("dd/MM/yyyy");
-                Date now = null;
-                try {
-                    now = formatdate.parse(String.valueOf(dateFormat.format(dateObj)));
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                long ahora = System.currentTimeMillis();
+                Date fecha = new Date(ahora);
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                String now = df.format(fecha);
 
                 Transaction transaction = new Transaction("Deposito",newamount+commission, now,send);
 
