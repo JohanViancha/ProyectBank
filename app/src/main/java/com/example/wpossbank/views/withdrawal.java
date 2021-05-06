@@ -90,7 +90,7 @@ public class withdrawal extends AppCompatActivity {
             validate = false;
         }else{
             //Se valida que la cedula y el pin pertenezcan a un cliente registrado
-            if(!admincli.validateDataClient(this, client)){
+            if(!admincli.validateDataClient(this, client,true)){
                 message = "Los datos ingresados del cliente no están registrados \n \n";
                 validate = false;
             }

@@ -38,7 +38,7 @@ public class admincorrespondent {
     }
 
 
-    public boolean setSaldo(Context context, double balance, int id){
+    public boolean setBalanceCorrespondent(Context context, double balance, int id){
 
         boolean result = false;
         admindb admin = new admindb(context,"wpossbank",null, 1);

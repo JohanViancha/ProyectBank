@@ -30,7 +30,8 @@ public class admintransaction {
 
                 admincorrespondent admincorr = new admincorrespondent();
 
-                if(admincorr.setSaldo(context, valueForCorrespondet,idcorrespondent)){
+                //Se actualiza el saldo del corresponsal
+                if(admincorr.setBalanceCorrespondent(context, valueForCorrespondet,idcorrespondent)){
                     result =  true;
                 }
 

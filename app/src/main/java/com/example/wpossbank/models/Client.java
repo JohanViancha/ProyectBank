@@ -8,6 +8,10 @@ public class Client {
     private double balance;
 
 
+    public Client(String id) {
+        this.id = id;
+    }
+
     public Client(String id, String pin, double balance) {
         this.id = id;
         this.pin = pin;

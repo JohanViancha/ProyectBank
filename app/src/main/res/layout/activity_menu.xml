@@ -35,6 +35,7 @@
         android:layout_marginTop="236dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:onClick="deposit"
         android:text="@string/str_menudeposit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

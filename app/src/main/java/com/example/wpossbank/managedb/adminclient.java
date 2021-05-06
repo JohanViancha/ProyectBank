@@ -8,20 +8,35 @@ import com.example.wpossbank.models.Client;
 
 public class adminclient {
 
-    public boolean validateDataClient(Context context, Client client){
+    public boolean validateDataClient(Context context, Client client,boolean option){
 
         boolean result = false;
         admindb admin = new admindb(context,"wpossbank",null, 1);
         SQLiteDatabase sql = admin.getReadableDatabase();
 
-        //se obtiene cursor que retorna la consulta
-        Cursor row = sql.rawQuery("select * from clients " +
-                "where identification_cli = \'"+client.getId()+"\'" +
-                "and pin_cli = \'"+client.getPin()+"\'",null);
 
-        if(row.moveToFirst()){
-            result = true;
+
+        if(option){
+            // Se valida la cedula y el pin existan
+            //se obtiene cursor que retorna la consulta
+            Cursor row = sql.rawQuery("select * from clients " +
+                    "where identification_cli = \'"+client.getId()+"\'" +
+                    "and pin_cli = \'"+client.getPin()+"\'",null);
+
+            if(row.moveToFirst()){
+                result = true;
+            }
+        }else{
+
+            //Se valida que la cedula exista
+            Cursor row = sql.rawQuery("select * from clients " +
+                    "where identification_cli = \'"+client.getId()+"\'",null);
+
+            if(row.moveToFirst()){
+                result = true;
+            }
         }
+
 
         return result;
     }

@@ -20,13 +20,17 @@ public class menu extends AppCompatActivity {
     }
 
     public void cardpayment(View view){
-
         Intent inte = new Intent(this, cardpayment.class);
         startActivity(inte);
     }
 
     public void withtdrawal(View view){
         Intent inte = new Intent(this, withdrawal.class);
+        startActivity(inte);
+    }
+
+    public void deposit(View view){
+        Intent inte = new Intent(this, deposit.class);
         startActivity(inte);
     }
 }

@@ -93,7 +93,7 @@
             android:id="@+id/txt_withdrawalamount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/str_withdrawalrepeatpin"
+            android:hint="@string/str_withdrawalamount"
             android:inputType="number">
 
         </com.google.android.material.textfield.TextInputEditText>
