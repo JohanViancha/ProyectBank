@@ -24,4 +24,9 @@ public class menu extends AppCompatActivity {
         Intent inte = new Intent(this, cardpayment.class);
         startActivity(inte);
     }
+
+    public void withtdrawal(View view){
+        Intent inte = new Intent(this, withdrawal.class);
+        startActivity(inte);
+    }
 }

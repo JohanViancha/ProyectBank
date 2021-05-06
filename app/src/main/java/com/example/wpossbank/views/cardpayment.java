@@ -75,16 +75,16 @@ public class cardpayment extends AppCompatActivity implements View.OnFocusChange
                 SharedPreferences sharedpreferences = getSharedPreferences("sesion_corresponsal", Context.MODE_PRIVATE);
                 int id = sharedpreferences.getInt("id_correspondent", 0);
 
-
+                message mes = new message();
 
                 //Si se realiza con exito la transacción se muestra el siguiente mensaje
-                if(admin.registertransaction(this,transaction,id)){
-                    getMessage("!Exitoso!", "El pago ha sido exitoso");
+                if(admin.registertransaction(this,transaction,transaction.getAmount(),id)){
+                    mes.getMessage(this,"!Exitoso!", "El pago ha sido exitoso");
                     Intent inte = new Intent(this, menu.class);
                     startActivity(inte);
                 }
                 else{
-                    getMessage("!Error!", "No se pudo realizar el pago");
+                    mes.getMessage(this,"!Error!", "No se pudo realizar el pago");
 
                 }
             }
@@ -133,26 +133,12 @@ public class cardpayment extends AppCompatActivity implements View.OnFocusChange
 
         //Si se genero algun error se muestra un mensaje de error
         if(!result){
-           getMessage("¡Error!",message);
+            message mes = new message();
+           mes.getMessage(this,"¡Error!",message);
         }
 
         return result;
     }
-
-
-    //Función para mostrar mensaje en forma de AlertDialog
-    public void getMessage(String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title);
-        builder.setMessage(message)
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    }
-                }).show();
-    }
-
 
     //Evento que se ejecuta cada vez que el edit text del numero de la tarjeta modifica su focus
     @Override

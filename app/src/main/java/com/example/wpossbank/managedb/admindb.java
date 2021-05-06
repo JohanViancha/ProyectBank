@@ -33,11 +33,11 @@ public class admindb extends SQLiteOpenHelper {
 
         //Se crea la tabla cliente
         db.execSQL("CREATE TABLE clients (" +
-                "id_cliente integer primary key," +
-                "nombre_cli text,"+
-                "cedula_cli text," +
+                "id_client integer primary key," +
+                "name_cli text,"+
+                "identification_cli text," +
                 "pin_cli text," +
-                "saldo_cli money)");
+                "balance_cli money)");
 
         //Se crea la tabla transaccion
         db.execSQL("CREATE TABLE transactions (" +

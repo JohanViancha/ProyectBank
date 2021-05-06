@@ -27,6 +27,16 @@
     <string name="str_cardpaymentpay">Pagar</string>
 
 
+    <!-- String para el retiro -->
+    <string name="str_withdrawalidentification">Numero de cedula</string>
+    <string name="str_withdrawalpin">Pin de la cuenta</string>
+    <string name="str_withdrawalrepeatpin">Confirme el pin</string>
+    <string name="str_withdrawalamount">Monto a retirar</string>
+    <string name="str_withdrawalbtn">Realizar retiro</string>
+
+
+
+
 
 
 

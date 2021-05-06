@@ -45,7 +45,9 @@ public class admincorrespondent {
         SQLiteDatabase sql = admin.getWritableDatabase();
 
         try {
+
             sql.execSQL("update correspondent set balance_cor = balance_cor + \'"+balance+"\' where id_correspondent = \'"+id+"\'");
+
             result = true;
         }catch (Exception ex){
             System.out.println(ex);

@@ -11,7 +11,7 @@ public class admintransaction {
 
 
     //Metodo para registrar una transacción
-    public boolean registertransaction(Context context, Transaction transaction, int id){
+    public boolean registertransaction(Context context, Transaction transaction, double valueForCorrespondet, int idcorrespondent){
 
         boolean result = false;
         try{
@@ -30,7 +30,7 @@ public class admintransaction {
 
                 admincorrespondent admincorr = new admincorrespondent();
 
-                if(admincorr.setSaldo(context, transaction.getAmount(),id)){
+                if(admincorr.setSaldo(context, valueForCorrespondet,idcorrespondent)){
                     result =  true;
                 }
 

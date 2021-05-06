@@ -168,7 +168,6 @@
     </androidx.appcompat.widget.AppCompatImageView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_cardpaymentpay"
         style="@style/TextAppearance.MaterialComponents.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
