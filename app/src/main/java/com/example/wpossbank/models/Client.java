@@ -18,7 +18,10 @@ public class Client {
         this.balance = balance;
     }
 
-
+    public Client(String id, String pin) {
+        this.id = id;
+        this.pin = pin;
+    }
 
     public Client(String id, String name, String pin, double balance) {
         this.id = id;

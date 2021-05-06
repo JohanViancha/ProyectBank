@@ -67,8 +67,12 @@ public class deposit extends AppCompatActivity {
                 SharedPreferences sharedpreferences = getSharedPreferences("sesion_corresponsal", Context.MODE_PRIVATE);
                 int id = sharedpreferences.getInt("id_correspondent", 0);
                 admintransaction admintra = new admintransaction();
+                adminclient admincli = new adminclient();
                 if(admintra.registertransaction(this,transaction, commission, id)){
-                    mes.getMessage(this, "¡Exitoso!","El deposito ha sido realizado");
+                    if(admincli.setBalanceClient(this, receive,newamount,true)) {
+                        mes.getMessage(this, "¡Exitoso!","El deposito ha sido realizado");
+                    }
+
                 }else{
                     mes.getMessage(this, "¡Error!","Error al realizar el deposito");
 

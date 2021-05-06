@@ -25,6 +25,8 @@
     <string name="str_cardpaymentvalue">Valor a pagar</string>
     <string name="str_cardpaymentfees">Cuotas</string>
     <string name="str_cardpaymentpay">Pagar</string>
+    <string name="str_cardpaymenwelcome">Bienvenida su tarjeta</string>
+
 
     <!-- String para el retiro -->
     <string name="str_withdrawalidentification">Numero de cedula</string>
@@ -35,13 +37,45 @@
 
 
     <!-- String para el deposio -->
-    <string name="str_depositreceive">Cedula de la cuenta que recibe</string>
-    <string name="str_depositsend">Cedula de la cuenta que envía</string>
+    <string name="str_depositreceive">Cédula del cliente que recibe deposito</string>
+    <string name="str_depositsend">Cédula del cliente que envía deposito</string>
     <string name="str_depositamount">Monto a depositar</string>
     <string name="str_depositbtn">Realizar deposito</string>
 
 
 
+    <!-- String para la transferencia -->
+    <string name="str_transfersend">Cédula del cliente que envia transfiere</string>
+    <string name="str_transferreceive">Cédula del cliente que recibe la transferencia</string>
+    <string name="str_transferpin">Pin de la cuenta</string>
+    <string name="str_transferpinrepeat">Confirmar pin de la cuenta</string>
+    <string name="str_transferamount">Monto a transferir</string>
+    <string name="str_transferbtn">Hacer transferencia</string>
+
+
+    <!-- String para consultar saldo -->
+    <string name="str_checkbalanceidentification">Número de cédula</string>
+    <string name="str_checkbalancepin">Pin de la cuenta</string>
+    <string name="str_checkbalancepinrepeat">Confirmar pin de la cuenta</string>
+    <string name="str_checkbalancecheck">Consultar saldo</string>
+    <string name="str_checkbalancebalance">Su saldo es </string>
+
+
+    <!-- String para crear una cuenta -->
+    <string name="str_createaccountname">Nombre del cliente</string>
+    <string name="str_createaccountidentification">Número de cédula</string>
+    <string name="str_createaccountpin">Pin de la cuenta</string>
+    <string name="str_createaccountpinrepeat">Confirmar pin de la cuenta</string>
+    <string name="str_createaccountbalance">Saldo inicial</string>
+    <string name="str_createaccountbtn">Crear cuenta</string>
+
+
+    <!-- String para consultar saldo corresponsal -->
+    <string name="str_correspondentbalanceemail">Correo electrónico</string>
+    <string name="str_correspondentbalancepassword">Nueva contraseña</string>
+    <string name="str_correspondentbalancepasswordrepeat">Confirmar nueva contraseña</string>
+    <string name="str_correspondentbalancebtn">Cambiar contraseña</string>
+    <string name="str_correspondentbalancetext">Su saldo es</string>
 
 
 

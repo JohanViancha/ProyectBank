@@ -56,4 +56,39 @@ public class admincorrespondent {
 
 
     }
+
+    public double getBalanceCorrespondent(Context context, int id){
+        double balance = 0;
+        admindb admin = new admindb(context,"wpossbank",null, 1);
+        SQLiteDatabase sql = admin.getReadableDatabase();
+
+
+        //se obtiene cursor que retorna la consulta
+        Cursor row = sql.rawQuery("select * from correspondent " +
+                "where id_correspondent = \'"+id+"\'",null);
+
+        if(row.moveToFirst()){
+            balance =row.getDouble(3);
+        }
+
+        return balance;
+    }
+
+
+    public boolean updatePasswordCorrespondent(Context context, int id, String newpassword){
+
+        boolean result = false;
+        admindb admin = new admindb(context,"wpossbank",null, 1);
+        SQLiteDatabase sql = admin.getWritableDatabase();
+
+        try {
+
+            sql.execSQL("update correspondent set password_cor = \'"+newpassword+"\' where id_correspondent = \'"+id+"\'");
+
+            result = true;
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
+        return result;
+    }
 }

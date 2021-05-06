@@ -1,5 +1,6 @@
 package com.example.wpossbank.managedb;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +9,8 @@ import com.example.wpossbank.models.Client;
 
 public class adminclient {
 
+
+    // Función para validar el pin y la cedula del cliente
     public boolean validateDataClient(Context context, Client client,boolean option){
 
         boolean result = false;
@@ -17,7 +20,6 @@ public class adminclient {
 
 
         if(option){
-            // Se valida la cedula y el pin existan
             //se obtiene cursor que retorna la consulta
             Cursor row = sql.rawQuery("select * from clients " +
                     "where identification_cli = \'"+client.getId()+"\'" +
@@ -41,6 +43,7 @@ public class adminclient {
         return result;
     }
 
+    //Función para validar el saldo del cliente
     public boolean validateBalanceClient(Context context, Client client, int commission){
 
         boolean result = false;
@@ -82,5 +85,46 @@ public class adminclient {
         }
         return result;
 
+    }
+
+
+    public double getBalanceClient(Context context, String identification){
+        double balance = 0;
+        admindb admin = new admindb(context,"wpossbank",null, 1);
+        SQLiteDatabase sql = admin.getReadableDatabase();
+
+
+        //se obtiene cursor que retorna la consulta
+        Cursor row = sql.rawQuery("select * from clients " +
+                "where identification_cli = \'"+identification+"\'",null);
+
+        if(row.moveToFirst()){
+            balance =row.getDouble(4);
+        }
+
+        return balance;
+    }
+
+
+    public boolean createAccount(Context context, Client client){
+
+        admindb admin = new admindb(context,"wpossbank",null, 1);
+        SQLiteDatabase sql = admin.getWritableDatabase();
+
+        ContentValues newclient = new ContentValues();
+        //Se hace el llenado del contetvalues
+        newclient.put("name_cli", client.getName());
+        newclient.put("identification_cli", client.getId());
+        newclient.put("pin_cli", client.getPin());
+        newclient.put("balance_cli", client.getBalance());
+
+        //Se inserta la transacción
+        if(sql.insert("clients",null, newclient) > 0){
+
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
