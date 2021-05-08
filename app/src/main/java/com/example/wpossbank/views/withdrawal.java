@@ -1,12 +1,18 @@
 package com.example.wpossbank.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.wpossbank.MainActivity;
 import com.example.wpossbank.R;
 import com.example.wpossbank.managedb.adminclient;
 import com.example.wpossbank.managedb.admintransaction;
@@ -22,6 +28,8 @@ import java.util.Date;
 public class withdrawal extends AppCompatActivity {
 
     TextInputEditText identification, pin, repeatpin, amount;
+    TextView toolbar;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +39,10 @@ public class withdrawal extends AppCompatActivity {
         pin = findViewById(R.id.txt_withdrawalpin);
         repeatpin = findViewById(R.id.txt_withdrawalrepeatpin);
         amount = findViewById(R.id.txt_withdrawalamount);
+        toolbar = findViewById(R.id.tb_title);
+        toolbar.setText("Retiros");
     }
+
 
 
     //Función que se ejecuta al dar clic en el botón de realizar retiro
@@ -60,12 +71,26 @@ public class withdrawal extends AppCompatActivity {
                 if(admintra.registertransaction(this,transaction,commission,id)){
                     if(admincli.setBalanceClient(this, identificacion,newamount+commission,false)){
                         message mes = new message();
-                        mes.getMessage(this, "¡Correcto!", "El retiro ha sido exitoso");
+                        Intent inte = new Intent(this, menu.class);
+                        mes.getConfirm(this, "Exitoso", "El retiro ha sido exitoso",getLayoutInflater(),0)
+                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(context, menu.class);
+                                        startActivity(intent);
+                                    }
+                                }).show();;
 
                     }
 
                 }
             }
+        }else{
+            message mes = new message();
+            mes.getConfirm(this, "Error", "Todos los campos son obligatorios",getLayoutInflater(),0)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();
         }
 
     }
@@ -100,11 +125,43 @@ public class withdrawal extends AppCompatActivity {
 
         if(!validate){
             message mes = new message();
-            mes.getMessage(this, "¡Error!", message);
+            mes.getConfirm(this, "Error", message,getLayoutInflater(),0)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
         }
 
 
         return validate;
+    }
+
+
+
+    public void cancel(View view){
+
+        message mes = new message();
+        mes.getConfirm(this,"Confirmación","¿Seguro que desea cancelar el retiro?",getLayoutInflater(),0)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        mes.getConfirm(context,"Exitoso","Retiro cancelado",getLayoutInflater(),0).
+                                setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent inte = new Intent(context, menu.class);
+                                        startActivity(inte);
+                                    }
+                                }).show();
+
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
 }

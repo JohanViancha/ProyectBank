@@ -3,6 +3,7 @@ package com.example.wpossbank.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,10 +15,6 @@ import com.example.wpossbank.R;
 import com.example.wpossbank.managedb.admincorrespondent;
 import com.example.wpossbank.models.Correspondent;
 import com.google.android.material.textfield.TextInputEditText;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class login extends AppCompatActivity {
 
@@ -36,6 +33,7 @@ public class login extends AppCompatActivity {
 
     public void login(View view) {
         //se obtiene el valor del email y el password
+        message mes = new message();
         String email = this.email.getText().toString();
         String password = this.password.getText().toString();
 
@@ -56,20 +54,34 @@ public class login extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putFloat("balance", Float.parseFloat(String.valueOf(result.getBalance())));
                 editor.putString("email", result.getEmail());
+                editor.putString("name", "Corresponsal Bancario WPOSS");
                 editor.putString("password", result.getPassword());
                 editor.putInt("id_correspondent", result.getId());
                 editor.commit();
 
+                Bundle extras = new Bundle();
 
-                Intent inte = new Intent(this, menu.class);
-                startActivity(inte);
+                extras.putString("email",result.getEmail());
+                extras.putString("name", "Corresponsal Bancario WPOSS");
+
+                Intent intent = new Intent(this, menu.class);
+                intent.putExtras(extras);
+                startActivity(intent);
+
             }
             else{
-                Toast.makeText(this, "Usuario y/o contraseña", Toast.LENGTH_SHORT).show();
+                mes.getConfirm(this,"Error", "Usuario y/o contraseña incorrectos",getLayoutInflater(),0)
+                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
             }
         }
         else{
-            Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+
+            mes.getConfirm(this,"Error", "Todos los campos son obligatorios",getLayoutInflater(),0)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
         }
 
 

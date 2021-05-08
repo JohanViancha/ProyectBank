@@ -1,12 +1,18 @@
 package com.example.wpossbank.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.wpossbank.MainActivity;
 import com.example.wpossbank.R;
 import com.example.wpossbank.managedb.adminclient;
 import com.example.wpossbank.managedb.admincorrespondent;
@@ -23,6 +29,8 @@ import java.util.Date;
 public class deposit extends AppCompatActivity {
 
     TextInputEditText send,receive, amount;
+    TextView toolbar;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +39,11 @@ public class deposit extends AppCompatActivity {
         send = findViewById(R.id.txt_depositsend);
         receive = findViewById(R.id.txt_depositreceive);
         amount = findViewById(R.id.txt_depositamount);
+        toolbar = findViewById(R.id.tb_title);
+        toolbar.setText("Depositos");
+
     }
+
 
     public void makeDeposit(View view){
 
@@ -51,6 +63,7 @@ public class deposit extends AppCompatActivity {
             //Se valida que las dos celulas ingresadas existen en base de datos
             if(validateData(client1,client2)){
 
+                //Se obtiene la fecha actual
                 long ahora = System.currentTimeMillis();
                 Date fecha = new Date(ahora);
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -62,15 +75,40 @@ public class deposit extends AppCompatActivity {
                 int id = sharedpreferences.getInt("id_correspondent", 0);
                 admintransaction admintra = new admintransaction();
                 adminclient admincli = new adminclient();
-                if(admintra.registertransaction(this,transaction, commission, id)){
-                    if(admincli.setBalanceClient(this, receive,newamount,true)) {
-                        mes.getMessage(this, "¡Exitoso!","El deposito ha sido realizado");
-                    }
 
-                }else{
-                    mes.getMessage(this, "¡Error!","Error al realizar el deposito");
 
-                }
+                mes.getConfirm(this,"Confirmación","Esta seguro de realizar el deposito de "+amount + " pesos",getLayoutInflater(), commission)
+                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(admintra.registertransaction(context,transaction, commission, id)){
+                                    if(admincli.setBalanceClient(context, receive,newamount,true)) {
+                                        mes.getConfirm(context, "Exitoso","El deposito ha sido realizado",getLayoutInflater(),0)
+                                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent intent = new Intent(context, menu.class);
+                                                        startActivity(intent);
+                                                    }
+                                                }).show();;
+                                    }
+
+                                }else{
+                                    mes.getConfirm(context, "Error","Error al realizar el deposito",getLayoutInflater(),0)
+                                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
+
+                                }
+                            }
+                        })
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();;
+
 
 
             }
@@ -78,7 +116,10 @@ public class deposit extends AppCompatActivity {
         }
         else{
 
-            mes.getMessage(this,"¡Error!","Todos los campos son obligatorios");
+            mes.getConfirm(this,"Error","Todos los campos son obligatorios",getLayoutInflater(),0)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();
         }
     }
 
@@ -102,9 +143,42 @@ public class deposit extends AppCompatActivity {
 
         if(!validate){
             message mes = new message();
-            mes.getMessage(this, "¡Error!",message);
+            mes.getConfirm(this, "Error",message,getLayoutInflater(),0)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
         }
 
         return validate;
     }
+
+
+    public void cancel(View view){
+
+        message mes = new message();
+        mes.getConfirm(this,"Confirmación","¿Seguro que desea cancelar el deposito?",getLayoutInflater(),0)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        mes.getConfirm(context,"Exitoso","Deposito cancelado",getLayoutInflater(),0).
+                                setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent inte = new Intent(context, menu.class);
+                                        startActivity(inte);
+                                    }
+                                }).show();
+
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
+
 }

@@ -3,19 +3,30 @@ package com.example.wpossbank.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.wpossbank.R;
 
 public class menu extends AppCompatActivity {
 
+    TextView email,name;
+    Context context =this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        email = findViewById(R.id.tv_menuemail);
+        name = findViewById(R.id.tv_menuname);
+
+        SharedPreferences sharedpreferences = getSharedPreferences("sesion_corresponsal", Context.MODE_PRIVATE);
+        email.setText(sharedpreferences.getString("email", ""));
+        name.setText(sharedpreferences.getString("name", ""));
 
     }
 
@@ -61,7 +72,21 @@ public class menu extends AppCompatActivity {
 
 
     public void exit(View view){
-        Intent inte = new Intent(this, login.class);
-        startActivity(inte);
+        message mes = new message();
+        mes.getConfirm(this,"Confirmación","¿Esta seguro que desea salir?",getLayoutInflater(),0)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent inte = new Intent(context, login.class);
+                        startActivity(inte);
+
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 }

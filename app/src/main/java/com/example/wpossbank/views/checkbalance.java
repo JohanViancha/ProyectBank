@@ -1,13 +1,19 @@
 package com.example.wpossbank.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
+import com.example.wpossbank.MainActivity;
 import com.example.wpossbank.R;
 import com.example.wpossbank.managedb.adminclient;
 import com.example.wpossbank.managedb.admincorrespondent;
@@ -26,6 +32,8 @@ public class checkbalance extends AppCompatActivity {
 
     TextInputEditText identification, pin, pinrepeat;
     TextView balance;
+    TextView toolbar;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +43,9 @@ public class checkbalance extends AppCompatActivity {
         pin = findViewById(R.id.txt_checkbalancepin);
         pinrepeat = findViewById(R.id.txt_checkbalancepinrepeat);
         balance = findViewById(R.id.txt_checkbalancevalue);
+        toolbar = findViewById(R.id.tb_title);
+        toolbar.setText("Consultar Saldo");
+
     }
 
 
@@ -74,7 +85,10 @@ public class checkbalance extends AppCompatActivity {
         }
         else{
 
-            mes.getMessage(this, "¡Error!", "Todos los datos son obligatorios");
+            mes.getConfirm(this, "Error", "Todos los datos son obligatorios",getLayoutInflater(),0)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
         }
     }
 
@@ -99,9 +113,41 @@ public class checkbalance extends AppCompatActivity {
 
         if(!validate){
             message mes = new message();
-            mes.getMessage(this,"¡Error!",message );
+            mes.getConfirm(this,"Error",message ,getLayoutInflater(),0)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
         }
 
         return validate;
     }
+
+
+    public void cancel(View view){
+
+        message mes = new message();
+        mes.getConfirm(this,"Confirmación","¿Seguro que desea cancelar la consulta del saldo?",getLayoutInflater(),0)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        mes.getConfirm(context,"Exitoso","Se canceló la consulta del saldo",getLayoutInflater(),0).
+                                setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent inte = new Intent(context, menu.class);
+                                        startActivity(inte);
+                                    }
+                                }).show();
+
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
 }

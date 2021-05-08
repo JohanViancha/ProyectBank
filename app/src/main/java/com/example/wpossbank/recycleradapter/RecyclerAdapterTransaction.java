@@ -50,20 +50,24 @@ public class RecyclerAdapterTransaction extends RecyclerView.Adapter<RecyclerAda
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView date,type,identificaction;
+        TextView date,type,identificaction,ammount;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             date = itemView.findViewById(R.id.tv_transactionhistorydate);
             type = itemView.findViewById(R.id.tv_transactionhistorytype);
             identificaction = itemView.findViewById(R.id.tv_transactionhistoryidentification);
+            ammount = itemView.findViewById(R.id.tv_transactionhistoryammount);
         }
 
+
+        //Se cargan los datos en cada Text View
         public void showTransactions(final Transaction transaction){
 
             date.setText(String.valueOf(transaction.getDate()));
             type.setText(transaction.getType());
             identificaction.setText(transaction.getIdentification());
+            ammount.setText(String.valueOf(transaction.getAmount()));
 
         }
     }

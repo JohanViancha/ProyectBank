@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Wposs Bank</string>
+    <string name="app_name">WPOSS Bank</string>
 
     <!-- String para el login -->
     <string name="str_loginemail">Ingrese su email</string>
@@ -33,15 +33,14 @@
     <string name="str_withdrawalpin">Pin de la cuenta</string>
     <string name="str_withdrawalrepeatpin">Confirme el pin</string>
     <string name="str_withdrawalamount">Monto a retirar</string>
-    <string name="str_withdrawalbtn">Realizar retiro</string>
+    <string name="str_withdrawalbtn">Retirar</string>
 
 
     <!-- String para el deposio -->
     <string name="str_depositreceive">Cédula del cliente que recibe deposito</string>
     <string name="str_depositsend">Cédula del cliente que envía deposito</string>
     <string name="str_depositamount">Monto a depositar</string>
-    <string name="str_depositbtn">Realizar deposito</string>
-
+    <string name="str_depositbtn">Depositar</string>
 
 
     <!-- String para la transferencia -->
@@ -50,7 +49,7 @@
     <string name="str_transferpin">Pin de la cuenta</string>
     <string name="str_transferpinrepeat">Confirmar pin de la cuenta</string>
     <string name="str_transferamount">Monto a transferir</string>
-    <string name="str_transferbtn">Hacer transferencia</string>
+    <string name="str_transferbtn">Transferir</string>
 
 
     <!-- String para consultar saldo -->
@@ -76,6 +75,20 @@
     <string name="str_correspondentbalancepasswordrepeat">Confirmar nueva contraseña</string>
     <string name="str_correspondentbalancebtn">Cambiar contraseña</string>
     <string name="str_correspondentbalancetext">Su saldo es</string>
+
+    <!-- String para consultar saldo corresponsal -->
+    <string name="str_dialogaccept">Aceptar</string>
+    <string name="str_dialogcancel">Cancelar</string>
+    <string name="str_dialogreturn">Volver</string>
+
+
+    <!-- String para Historial de transacciones -->
+    <string name="str_historydate">Fecha y hora de transacción</string>
+    <string name="str_historytype">Tipo de transacción</string>
+    <string name="str_historyammount">Monto de la transacción</string>
+    <string name="str_historyidentification">Numero de la transacción</string>
+
+
 
 
 

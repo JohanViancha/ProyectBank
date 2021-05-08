@@ -1,12 +1,18 @@
 package com.example.wpossbank.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.wpossbank.MainActivity;
 import com.example.wpossbank.R;
 import com.example.wpossbank.managedb.adminclient;
 import com.example.wpossbank.managedb.admintransaction;
@@ -22,6 +28,8 @@ import java.util.Date;
 public class transfer extends AppCompatActivity {
 
     TextInputEditText send, receive, amount, pin, pinrepeat;
+    TextView toolbar;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +40,10 @@ public class transfer extends AppCompatActivity {
         amount = findViewById(R.id.txt_transferamount);
         pin = findViewById(R.id.txt_transferpin);
         pinrepeat = findViewById(R.id.txt_transferpinrepeat);
-
+        toolbar = findViewById(R.id.tb_title);
+        toolbar.setText("Transferencia");
     }
+
 
     public void transferamount(View view){
         message mes = new message();
@@ -69,19 +79,33 @@ public class transfer extends AppCompatActivity {
                 if(admintra.registertransaction(this,tran,commission,id)){
                     if(admincli.setBalanceClient(this,send,newamount+commission, false)){
                         if(admincli.setBalanceClient(this, receive,newamount,true)){
-                            mes.getMessage(this, "¡Correcto!", "El transferencia ha sido exitoso");
+                            Intent inte = new Intent(this, menu.class);
+                            mes.getConfirm(this, "Exitoso", "El transferencia ha sido exitoso",getLayoutInflater(),0)
+                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(context, menu.class);
+                                            startActivity(intent);
+                                        }
+                                    }).show();;
 
                         }
                     }
                 }
                 else{
-                    mes.getMessage(this, "¡Error!", "No se pudo realizar la transferencia");
+                    mes.getConfirm(this, "Error", "No se pudo realizar la transferencia",getLayoutInflater(),0)
+                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
 
                 }
-            }else{
-                mes.getMessage(this, "¡Error!", "Todos los campos son obligatorios");
-
             }
+
+        }else{
+            mes.getConfirm(this, "Error", "Todos los campos son obligatorios",getLayoutInflater(),0)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();
 
         }
 
@@ -120,9 +144,43 @@ public class transfer extends AppCompatActivity {
 
         if(!validate){
             message mes = new message();
-            mes.getMessage(this,"¡Error!", message);
+            mes.getConfirm(this,"Error", message,getLayoutInflater(),0)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
         }
 
         return validate;
     }
+
+
+    public void cancel(View view){
+
+        message mes = new message();
+        mes.getConfirm(this,"Confirmación","¿Seguro que desea cancelar la transferencia?",getLayoutInflater(),0)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        mes.getConfirm(context,"Exitoso","Transferencia cancelada",getLayoutInflater(),0).
+                                setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent inte = new Intent(context, menu.class);
+                                        startActivity(inte);
+                                    }
+                                }).show();
+
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
+
+
 }
