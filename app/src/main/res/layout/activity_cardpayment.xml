@@ -57,7 +57,7 @@
         android:layout_marginRight="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:helperText="dia/mes/año   Ejemplo: 08/07/2022"
+        app:helperText="Ejemplo: 25/12/2022"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText

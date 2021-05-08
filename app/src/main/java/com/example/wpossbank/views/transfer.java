@@ -60,6 +60,9 @@ public class transfer extends AppCompatActivity {
             double newamount = Double.parseDouble(amount);
             Client client1 = new Client(send,pin,newamount);
             Client client2 = new Client(receive);
+
+
+            //Validación de datos
             if(validateData(this,client1,client2,pinrepeat,commission)){
 
                 //Se obtiene la fecha actual
@@ -75,30 +78,42 @@ public class transfer extends AppCompatActivity {
                 Transaction tran = new Transaction("Transferencia",newamount+commission,now,send);
                 adminclient admincli = new adminclient();
                 admintransaction admintra = new admintransaction();
-                //Se hace el registro de la transacción
-                if(admintra.registertransaction(this,tran,commission,id)){
-                    if(admincli.setBalanceClient(this,send,newamount+commission, false)){
-                        if(admincli.setBalanceClient(this, receive,newamount,true)){
-                            Intent inte = new Intent(this, menu.class);
-                            mes.getConfirm(this, "Exitoso", "El transferencia ha sido exitoso",getLayoutInflater(),0)
-                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent = new Intent(context, menu.class);
-                                            startActivity(intent);
+
+                //Se realiza primero la confirmación de la transacción
+                mes.getConfirm(this, "Confirmación","Por favor confirme la transferencia por $ "+amount ,getLayoutInflater(),commission)
+                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //Se hace el registro de la transacción
+                                        if(admintra.registertransaction(context,tran,commission,id)){
+                                            if(admincli.setBalanceClient(context,send,newamount+commission, false)){
+                                                if(admincli.setBalanceClient(context, receive,newamount,true)){
+                                                    Intent inte = new Intent(context, menu.class);
+                                                    mes.getConfirm(context, "Exitoso", "El transferencia ha sido exitosa",getLayoutInflater(),0)
+                                                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    Intent intent = new Intent(context, menu.class);
+                                                                    startActivity(intent);
+                                                                }
+                                                            }).show();;
+
+                                                }
+                                            }
                                         }
-                                    }).show();;
+                                        else{
+                                            mes.getConfirm(context, "Error", "No se pudo realizar la transferencia",getLayoutInflater(),0)
+                                                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
 
-                        }
-                    }
-                }
-                else{
-                    mes.getConfirm(this, "Error", "No se pudo realizar la transferencia",getLayoutInflater(),0)
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
+                                        }
+                                    }
+                                })
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();
 
-                }
             }
 
         }else{

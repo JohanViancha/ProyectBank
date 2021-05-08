@@ -48,6 +48,7 @@ public class withdrawal extends AppCompatActivity {
     //Función que se ejecuta al dar clic en el botón de realizar retiro
     public void makewithdrawal(View view){
         final int commission = 2000;
+        message mes = new message();
         String identificacion = this.identification.getText().toString();
         String pin = this.pin.getText().toString();
         String repeatpin = this.repeatpin.getText().toString();
@@ -68,25 +69,42 @@ public class withdrawal extends AppCompatActivity {
                 Transaction transaction = new Transaction("Retiro",newamount+commission, now,identificacion);
                 admintransaction admintra = new admintransaction();
                 adminclient admincli = new adminclient();
-                if(admintra.registertransaction(this,transaction,commission,id)){
-                    if(admincli.setBalanceClient(this, identificacion,newamount+commission,false)){
-                        message mes = new message();
-                        Intent inte = new Intent(this, menu.class);
-                        mes.getConfirm(this, "Exitoso", "El retiro ha sido exitoso",getLayoutInflater(),0)
-                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(context, menu.class);
-                                        startActivity(intent);
+
+
+                //Se realiza primero la confirmación del proceso
+                mes.getConfirm(this, "Confirmación","¿Seguro que desea hacer el retiro de $ " + amount,getLayoutInflater(),commission)
+                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(admintra.registertransaction(context,transaction,commission,id)){
+                                    if(admincli.setBalanceClient(context, identificacion,newamount+commission,false)){
+                                        Intent inte = new Intent(context, menu.class);
+                                        mes.getConfirm(context, "Exitoso", "El retiro ha sido exitoso",getLayoutInflater(),0)
+                                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent intent = new Intent(context, menu.class);
+                                                        startActivity(intent);
+                                                    }
+                                                }).show();;
+
                                     }
-                                }).show();;
 
-                    }
+                                }else{
+                                    mes.getConfirm(context, "Error", "No se pudo realizar el retiro",getLayoutInflater(),0)
+                                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();
+                                }
+                            }
+                        })
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {dialog.dismiss();} }).show();
 
-                }
+
             }
         }else{
-            message mes = new message();
             mes.getConfirm(this, "Error", "Todos los campos son obligatorios",getLayoutInflater(),0)
                     .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override

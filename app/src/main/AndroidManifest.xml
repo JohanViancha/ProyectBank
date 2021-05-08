@@ -17,9 +17,9 @@
         <activity android:name=".views.deposit" />
         <activity android:name=".views.withdrawal" />
         <activity android:name=".views.cardpayment" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".views.login" />
         <activity android:name=".views.menu" />
-        <activity android:name=".views.login">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@string/str_cardpaymentdate" />
+                android:text="@string/str_historydate" />
 
             <TextView
                 android:id="@+id/textView6"

@@ -21,10 +21,11 @@ import com.example.wpossbank.views.transactionhistory;
 import com.example.wpossbank.views.transfer;
 import com.example.wpossbank.views.withdrawal;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
 
-
-    DrawerLayout drawerLayout;
 
 
     @Override
@@ -32,20 +33,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        drawerLayout = findViewById(R.id.layout_drawer);
 
-    }
+        //Se carga la barra de progress
+        TimerTask tarea = new TimerTask() {
+            @Override
+            public void run() {
+                Intent inte = new Intent(MainActivity.this, login.class);
+                startActivity(inte);
+                finish();
+            }
+        };
 
+        Timer tiempo = new Timer();
+        tiempo.schedule(tarea, 5000);
 
-    public void openMenu(View view){
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
-
-
-    public void closeMenu(View view){
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
     }
 
 

@@ -37,10 +37,11 @@
 
     <View
         android:id="@+id/view"
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
         android:background="@color/gray_100"
-        android:layout_height="1dp" />
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/tv_dialogcommission"

@@ -40,12 +40,15 @@ public class message extends DialogFragment {
         dialogmessage.setText(message);
         ImageView dialogicon = view.findViewById(R.id.dialogicon);
         TextView diaglocommison = view.findViewById(R.id.tv_dialogcommission);
+
+        View viewline = view.findViewById(R.id.view);
         if(title.equals("Exitoso")){
             dialogicon.setImageResource(R.drawable.ic_baseline_check_circle_24);
         }else if(title.equals("Error")){
             dialogicon.setImageResource(R.drawable.ic_baseline_cancel_24);
         }else{
             if(commission!=0){
+                viewline.setVisibility(View.VISIBLE );
                 diaglocommison.setText("Comisión por transaccción: $" + String.valueOf(commission));
             }
 

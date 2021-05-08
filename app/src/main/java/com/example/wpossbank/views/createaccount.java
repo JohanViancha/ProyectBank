@@ -60,36 +60,49 @@ public class createaccount extends AppCompatActivity {
                 Client client = new Client(identification,name,pin,newbalance);
                 adminclient admincli = new adminclient();
 
-                if(admincli.createAccount(this, client)){
 
-                    long ahora = System.currentTimeMillis();
-                    Date fecha = new Date(ahora);
-                    DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                    String now = df.format(fecha);
-                    //Se obtiene el id del corresponsal
-                    SharedPreferences sharedpreferences = getSharedPreferences("sesion_corresponsal", Context.MODE_PRIVATE);
-                    int id = sharedpreferences.getInt("id_correspondent", 0);
+                //Se confirma la creación de la cuenta
+                mes.getConfirm(this, "Confirmación","Por favor confirme la creación de la cuenta",getLayoutInflater(),commission)
+                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                if(admincli.createAccount(context, client)){
+
+                                    long ahora = System.currentTimeMillis();
+                                    Date fecha = new Date(ahora);
+                                    DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                                    String now = df.format(fecha);
+                                    //Se obtiene el id del corresponsal
+                                    SharedPreferences sharedpreferences = getSharedPreferences("sesion_corresponsal", Context.MODE_PRIVATE);
+                                    int id = sharedpreferences.getInt("id_correspondent", 0);
 
 
-                    Transaction tran = new Transaction("Creación de cuenta",0,now,identification);
-                    admintransaction admintra = new admintransaction();
+                                    Transaction tran = new Transaction("Creación de cuenta",0,now,identification);
+                                    admintransaction admintra = new admintransaction();
 
-                    if(admintra.registertransaction(this,tran,commission,id)){
-                        mes.getConfirm(this, "Exitoso","El cliente ha sido creado correctamente",getLayoutInflater(),0)
-                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(context, menu.class);
-                                        startActivity(intent);
+                                    if(admintra.registertransaction(context,tran,commission,id)){
+                                        mes.getConfirm(context, "Exitoso","El cliente ha sido creado correctamente",getLayoutInflater(),0)
+                                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent intent = new Intent(context, menu.class);
+                                                        startActivity(intent);
+                                                    }
+                                                }).show();;
                                     }
-                                }).show();;
-                    }
-                }else{
-                    mes.getConfirm(this,"Error", "Error al crear el cliente",getLayoutInflater(),0)
-                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
-                }
+                                }else{
+                                    mes.getConfirm(context,"Error", "Error al crear el cliente",getLayoutInflater(),0)
+                                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
+                                }
+
+                            }
+                        })
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();
             }else{
                 mes.getConfirm(this,"Error", "Los pines deben ser iguales",getLayoutInflater(),0)
                         .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {

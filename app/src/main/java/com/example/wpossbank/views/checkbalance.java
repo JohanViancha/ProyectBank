@@ -74,11 +74,24 @@ public class checkbalance extends AppCompatActivity {
                 Transaction tran = new Transaction("Consulta de Saldo",0,now,identification);
                 adminclient admincli = new adminclient();
                 admintransaction admintra = new admintransaction();
-                if(admintra.registertransaction(this,tran,commission,id)){
-                    if(admincli.setBalanceClient(this,identification,commission,false)){
-                        balance.setText(String.valueOf(admincli.getBalanceClient(this, identification)));
-                    }
-                }
+
+                mes.getConfirm(this, "Confirmación","¿Esta seguro que desea consultar el saldo?",getLayoutInflater(),commission)
+                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(admintra.registertransaction(context,tran,commission,id)){
+                                    if(admincli.setBalanceClient(context,identification,commission,false)){
+                                        balance.setText("$ " +String.valueOf(admincli.getBalanceClient(context, identification)));
+                                    }
+                                }
+                            }
+
+                        })
+                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}
+                        }).show();
+
             }
 
 

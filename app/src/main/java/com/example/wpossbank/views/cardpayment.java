@@ -83,7 +83,7 @@ public class cardpayment extends AppCompatActivity implements View.OnFocusChange
                 now = formatdate.parse(String.valueOf(dateFormat.format(dateObj)));
 
                 //Se usa el metodo validateDate verificar que los datos tengas las condiciones necesarias
-                if(validateData(card,newdate,now,cvv,value)){
+                if(validateData(card,newdate,now,date,cvv,value,Integer.parseInt(fees))){
 
                     String messageHead = "Desea hacer el pago a WPOSS por un valor de $ " + value + " \n\n";
                     String messagefedds = "A " + fees + " cuotas \n\n";
@@ -143,7 +143,10 @@ public class cardpayment extends AppCompatActivity implements View.OnFocusChange
 
 
             } catch (ParseException  ex) {
-                ex.printStackTrace();
+                mes.getConfirm(this,"Error", "Han ingresado algun dato invalido",getLayoutInflater(),0)
+                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
             }
 
 
@@ -161,7 +164,7 @@ public class cardpayment extends AppCompatActivity implements View.OnFocusChange
 
 
     //Función para validar los datos del pago
-    public boolean validateData(String card, Date date,Date now,String cvv,double value){
+    public boolean validateData(String card, Date date,Date now,String dateString,String cvv,double value, int fees){
         String message = "";
         boolean result = true;
         //Se valida el tamaño de la tarjeta
@@ -175,11 +178,24 @@ public class cardpayment extends AppCompatActivity implements View.OnFocusChange
             result= false;
         }
 
-        //Se valida que la fehca de vencimiento sea mayor a la fecha actual
-        if(date.compareTo(now) < 0){
-            message = message + "* La fecha de vencimiento debe ser mayor a la fecha actual \n\n";
-            result= false;
+
+        //Se valida el formato de la fecha
+
+        try {
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(dateString);
+
+            //Se valida que la fehca de vencimiento sea mayor a la fecha actual
+            if(date.compareTo(now) < 0){
+                message = message + "* La fecha de vencimiento debe ser mayor a la fecha actual \n\n";
+                result= false;
+            }
+
+        } catch (ParseException e) {
+            message = message + "* La fecha no tiene formato correcto \n \n";
         }
+
 
         //Se valida el tamaño del cvv
         if(cvv.length() <3 || cvv.length() > 4){
@@ -193,6 +209,12 @@ public class cardpayment extends AppCompatActivity implements View.OnFocusChange
             result= false;
 
         }
+
+        if(fees < 1 && fees > 12){
+            message = message + "* El numero de cuotas permitidas son entre 1 y 12 \n \n";
+        }
+
+
 
         //Si se genero algun error se muestra un mensaje de error
         if(!result){
