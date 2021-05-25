@@ -26,6 +26,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.example.wpossbank.contetProvider.ProviderBank"
+            android:authorities="com.example.wpossbank.contetProvider.ProviderBank"
+            android:exported="true"/>
+            <!--android:readPermission="com.example.wpossbank.contetProvider.ProviderBank.READ_DATABASE"
+            android:writePermission="com.example.wpossbank.contetProvider.ProviderBank.WRITE_DATABASE"-->
     </application>
 
 </manifest>

@@ -6,12 +6,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.wpossbank.R;
+import com.example.wpossbank.contetProvider.ProviderBank;
 import com.example.wpossbank.managedb.admincorrespondent;
 import com.example.wpossbank.models.Correspondent;
 import com.google.android.material.textfield.TextInputEditText;
@@ -33,6 +37,13 @@ public class login extends AppCompatActivity {
         email = findViewById(R.id.txt_loginemail);
         password = findViewById(R.id.txt_loginpassword);
 
+        String fields[] = {"name_cli","identification_cli"};
+        Cursor cursor = getContentResolver().query(ProviderBank.CONTENT_URI,fields,null,null,null);
+
+        System.out.println(cursor.getCount());
+        while(cursor.moveToNext()){
+            System.out.println(cursor.getString(0) + " " + cursor.getString(1));
+        }
 
     }
 

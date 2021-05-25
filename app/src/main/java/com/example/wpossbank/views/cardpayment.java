@@ -143,7 +143,7 @@ public class cardpayment extends AppCompatActivity implements View.OnFocusChange
 
 
             } catch (ParseException  ex) {
-                mes.getConfirm(this,"Error", "Han ingresado algun dato invalido",getLayoutInflater(),0)
+                mes.getConfirm(this,"Error", "La fecha no tiene formato correcto633",getLayoutInflater(),0)
                         .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {dialog.dismiss();}}).show();;
